@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1abc7822bd9f28e9a62986817bf04f76",
+    "content-hash": "b45b58610014204c416a7dc6cc9525eb",
     "packages": [
+        {
+            "name": "almasaeed2010/adminlte",
+            "version": "v3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ColorlibHQ/AdminLTE.git",
+                "reference": "bd4d9c72931f1dd28601b6bfb387554a381ad540"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ColorlibHQ/AdminLTE/zipball/bd4d9c72931f1dd28601b6bfb387554a381ad540",
+                "reference": "bd4d9c72931f1dd28601b6bfb387554a381ad540",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Colorlib"
+                }
+            ],
+            "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 4",
+            "homepage": "https://adminlte.io/",
+            "keywords": [
+                "JS",
+                "admin",
+                "back-end",
+                "css",
+                "less",
+                "responsive",
+                "template",
+                "theme",
+                "web"
+            ],
+            "support": {
+                "issues": "https://github.com/ColorlibHQ/AdminLTE/issues",
+                "source": "https://github.com/ColorlibHQ/AdminLTE/tree/v3.2.0"
+            },
+            "time": "2022-02-07T20:33:09+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.9.3",
@@ -892,6 +935,65 @@
                 }
             ],
             "time": "2022-03-20T21:55:58+00:00"
+        },
+        {
+            "name": "jeroennoten/laravel-adminlte",
+            "version": "v3.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jeroennoten/Laravel-AdminLTE.git",
+                "reference": "ad59de64afcfb37d8348f0b175d5074519b8c2e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jeroennoten/Laravel-AdminLTE/zipball/ad59de64afcfb37d8348f0b175d5074519b8c2e8",
+                "reference": "ad59de64afcfb37d8348f0b175d5074519b8c2e8",
+                "shasum": ""
+            },
+            "require": {
+                "almasaeed2010/adminlte": "3.2.*",
+                "laravel/framework": ">=6.0",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": ">=4.0",
+                "phpunit/phpunit": "^8.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JeroenNoten\\LaravelAdminLte\\AdminLteServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JeroenNoten\\LaravelAdminLte\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen Noten",
+                    "email": "jeroennoten@me.com"
+                }
+            ],
+            "description": "Easy AdminLTE integration with Laravel",
+            "keywords": [
+                "AdminLTE",
+                "admin",
+                "administrator",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/jeroennoten/Laravel-AdminLTE/issues",
+                "source": "https://github.com/jeroennoten/Laravel-AdminLTE/tree/v3.8.1"
+            },
+            "time": "2022-03-14T12:43:50+00:00"
         },
         {
             "name": "laravel/framework",
@@ -4866,6 +4968,125 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.4"
             },
             "time": "2021-12-08T09:12:39+00:00"
+        },
+        {
+            "name": "uncgits/canvas-api-php-library",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/uncg-its/canvas-api-php-library.git",
+                "reference": "a752aa98af503156350e7cf67b7a4b463c2d909d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/uncg-its/canvas-api-php-library/get/a752aa98af503156350e7cf67b7a4b463c2d909d.zip",
+                "reference": "a752aa98af503156350e7cf67b7a4b463c2d909d",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": ">=1.22.0",
+                "php": "^7.0 || ^8.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "6.* recommended to make HTTP request with Guzzle adapter"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Uncgits\\CanvasApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "UNCG Laravel Developers",
+                    "email": "its-laravel-devs-l@uncg.edu",
+                    "homepage": "http://its.uncg.edu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP Library used to interact with the Canvas API for UNCG",
+            "homepage": "https://bitbucket.org/uncgits/canvas-api-php-library",
+            "keywords": [
+                "api",
+                "canvas",
+                "instructure",
+                "php",
+                "uncg",
+                "uncgits"
+            ],
+            "support": {
+                "issues": "https://bitbucket.org/uncg-its/canvas-api-php-library/issues",
+                "source": "https://bitbucket.org/uncg-its/canvas-api-php-library/src/a752aa98af503156350e7cf67b7a4b463c2d909d/?at=1.1.0"
+            },
+            "time": "2021-03-19T20:42:42+00:00"
+        },
+        {
+            "name": "uncgits/canvas-api-wrapper-laravel",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/uncg-its/canvas-api-wrapper-laravel.git",
+                "reference": "3c4b7e51f5c046066d105c3d6a7abcb38eb34aee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/uncg-its/canvas-api-wrapper-laravel/get/3c4b7e51f5c046066d105c3d6a7abcb38eb34aee.zip",
+                "reference": "3c4b7e51f5c046066d105c3d6a7abcb38eb34aee",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.4",
+                "php": ">=7.0.0",
+                "uncgits/canvas-api-php-library": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Uncgits\\CanvasApiLaravel\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "CanvasApi": "Uncgits\\CanvasApiLaravel\\Facades\\CanvasApi"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Uncgits\\CanvasApiLaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "UNCG ITS Laravel Developers Group",
+                    "email": "its-laravel-devs-l@uncg.edu",
+                    "homepage": "http://its.uncg.edu/canvas",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Wrapper for Canvas API PHP Library",
+            "homepage": "https://bitbucket.org/uncgits/canvas-api-wrapper-laravel",
+            "keywords": [
+                "api",
+                "canvas",
+                "instructure",
+                "laravel",
+                "php",
+                "uncg",
+                "uncgits"
+            ],
+            "support": {
+                "issues": "https://bitbucket.org/uncg-its/canvas-api-wrapper-laravel/issues",
+                "source": "https://bitbucket.org/uncg-its/canvas-api-wrapper-laravel/src/3c4b7e51f5c046066d105c3d6a7abcb38eb34aee/?at=master"
+            },
+            "time": "2020-08-19T21:28:02+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
