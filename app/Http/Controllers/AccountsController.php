@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Uncgits\CanvasApiLaravel\CanvasApi;
 
 class AccountsController extends Controller
 {
 
     public function index()
     {
-        $api = new \Uncgits\CanvasApiLaravel\CanvasApi;
+        $api = new CanvasApi;
         $api->setClient(new \Uncgits\CanvasApi\Clients\Accounts);
 
         $accounts = $api->listAccounts()->getContent();
@@ -17,21 +18,16 @@ class AccountsController extends Controller
     }
 
     public function specific($id){
-        $api = new \Uncgits\CanvasApiLaravel\CanvasApi;
+        $api = new  CanvasApi;
         $api->setClient(new \Uncgits\CanvasApi\Clients\Accounts);
+
 
         $account = $api->getAccount($id)->getContent();
         return view('accounts.accounts',[
             "id" => $id,
-            "account" => $account
+            "account" => $account,
+            "dersler" => \CanvasApi::using('accounts')->listActiveCoursesInAccount($id)->getContent()
         ]);
     }
-    //List users in account
-    public function users($accountId){
-        $api = new \Uncgits\CanvasApiLaravel\CanvasApi;
-        $api->setClient(new \Uncgits\CanvasApi\Clients\Users);
 
-        $users = $api->listUsersInAccount($accountId)->getContent();
-        return view("accounts.accountusers", compact('users'));
-    }
 }

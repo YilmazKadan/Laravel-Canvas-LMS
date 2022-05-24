@@ -52,11 +52,13 @@ return [
 
     // cache these specific GET requests by client class. use * to cache all
     'cacheable_calls' => [
-        // 'Uncgits\CanvasApi\Clients\Accounts' => [
-        //     'listAccounts',
-        //     'getSingleAccount'
-        // ],
-        // 'Uncgits\CanvasApi\Clients\Users' => ['*']
+//         'Uncgits\CanvasApi\Clients\Accounts' => [
+//             'listAccounts',
+//             'getSingleAccount'
+//         ],
+         'Uncgits\CanvasApi\Clients\Accounts' => ['*'],
+         'Uncgits\CanvasApi\Clients\EnrollmentTerms' => ['*'],
+         'Uncgits\CanvasApi\Clients\Users' => ['*']
     ],
 
 ];

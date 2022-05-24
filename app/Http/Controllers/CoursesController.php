@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use http\Env\Response;
 use Illuminate\Http\Request;
-use CanvasApi;
+use Uncgits\CanvasApiLaravel\CanvasApi;
 
 class CoursesController extends Controller
 {
@@ -15,6 +16,35 @@ class CoursesController extends Controller
         $result = $api->listCourses()->getContent();
 
         return view("courses", compact('result'));
+    }
+    public function store(Request $request){
+
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required',
+            'course_code' => 'required'
+        ]);
+        if ($validator->fails())
+        {
+            return response()->json(['errors' => $validator->errors()->all()]);
+        }
+
+        $fields = [
+            "course" => [
+                "name" => $request->name,
+                "course_code" =>$request->course_code
+            ]
+        ];
+
+        $api = new CanvasApi;
+        $api->setClient(new \Uncgits\CanvasApi\Clients\Courses);
+
+        $result = $api->addParameters($fields)->createCourse(5000);
+
+        if($result->getStatus() == "error"){
+            return response()->json(["apierrors" => $result->getErrors()]);
+        }
+
+        return response()->json(['success',"Başarılı bir şekilde kayıt eklendi"]);
     }
     public function specific($id){
         $api = new CanvasApi;

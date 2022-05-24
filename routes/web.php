@@ -35,24 +35,14 @@ Route::get('/logout', "AuthController@logout")->name("logout");
 
 Route::group(['middleware' => 'apimiddle'],function(){
 
-//    Route::get("/profile","ApiController@profile")->name("profile");
-//    Route::get("/users/account/{accountId}","UserApiController@users")->name("users");
-//    Route::get("/adduser","UserApiController@index");
-//    Route::post("/adduser","UserApiController@createUser")->name("adduser");
-//    Route::get("/accounts","ApiController@accounts")->name('accounts');
-//    Route::get("/course/enrollments/{id}","ApiController@enrollments");
-//
-//
-//    Route::name("courses.")->prefix('courses/')->group(function(){
-//        Route::get("/","CoursesController@index")->name("index");
-//        Route::get("{courseId}","CoursesController@specific")->name("spesific");
-//        Route::get("{courseId}/users","CoursesController@enrollments")->name("enrollments");
-//    });
-//
+   Route::get("/profile","GeneralController@profile")->name("profile");
+   Route::resource("courses","CoursesController");
 
     Route::name("accounts.")->prefix('accounts')->group(function(){
         Route::get("/","AccountsController@index")->name("index");
         Route::get("{id}","AccountsController@specific")->name("spesific");
-        Route::get("{id}/users","AccountsController@users")->name("users");
+
+        Route::resource("{id}/users","AccountsUserController");
+        Route::resource("{id}/donemler","AccountsTermsController");
     });
 });

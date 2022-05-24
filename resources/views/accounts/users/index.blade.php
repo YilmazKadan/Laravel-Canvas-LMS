@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Kullanıcılar')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Kullanıcılar</h1>
 @stop
 
 @section('content')
@@ -17,6 +17,10 @@
 
         <div class="col col-md-10">
         <div class="card">
+            <div class="card-header d-flex">
+                <h3>Dönemler</h3>
+                <a href="" class="btn btn-success ml-auto">Yeni Ekle</a>
+            </div>
             <div class="card-body">
                 <table class="table table table-bordered table-hover dataTable dtr-inline" id="tablo">
                     <thead>
