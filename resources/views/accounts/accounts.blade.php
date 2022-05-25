@@ -1,3 +1,7 @@
+@section('plugins.Datatables', true)
+@section('plugins.toastr', true)
+@section('plugins.Sweetalert2', true)
+
 @extends('adminlte::page')
 
 @section('title', $account->name)
@@ -86,8 +90,6 @@
     </div>
     </div>
 @stop
-@section('plugins.Datatables', true)
-@section('plugins.toastr', true)
 @section('css')
 @stop
 
@@ -113,7 +115,7 @@
                         if(result.errors)
                         {
                             jQuery('.alert-danger').html('');
-
+                                console.log(result.errors);
                             jQuery.each(result.errors, function(key, value){
                                 jQuery('.alert-danger').show();
                                 jQuery('.alert-danger').append('<li>'+value+'</li>');
@@ -128,8 +130,14 @@
                         }
                         else
                         {
+                            toastr.options =
+                                {
+                                    "closeButton" : true,
+                                    "progressBar" : true
+                                }
+                            toastr.success("İşlem başarılı");
                             $('#myModal').modal('hide');
-                            $("#form").reset();
+                            document.getElementById("form").reset();
                         }
                     }});
             });

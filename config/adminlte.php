@@ -258,6 +258,11 @@ return [
             'url'  => 'accounts',
             'icon' => 'fas fa-fw fa-tasks',
         ],
+        [
+            'text' => 'Çıkış',
+            'route'  => 'logout',
+            'icon' => 'fas fa-fw fa-logout',
+        ],
 //        [
 //            'text'    => 'multilevel',
 //            'icon'    => 'fas fa-fw fa-share',
@@ -401,6 +406,21 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                ],
+            ],
+        ],
+        'toastr' =>[
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/toastr/toastr.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/toastr/toastr.css',
                 ],
             ],
         ],

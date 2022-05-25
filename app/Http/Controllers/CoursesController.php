@@ -38,7 +38,7 @@ class CoursesController extends Controller
         $api = new CanvasApi;
         $api->setClient(new \Uncgits\CanvasApi\Clients\Courses);
 
-        $result = $api->addParameters($fields)->createCourse(5000);
+        $result = $api->addParameters($fields)->createCourse(1);
 
         if($result->getStatus() == "error"){
             return response()->json(["apierrors" => $result->getErrors()]);
