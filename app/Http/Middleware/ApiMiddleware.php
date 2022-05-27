@@ -23,7 +23,7 @@ class ApiMiddleware
         /*
             Burada invalid token hatası alınırsa login sayfasına yönlendiriyoruz.
         */
-        $accessKeyControl = isset(\CanvasApi::using('accounts')->listAccounts()->getErrors()[0]->message) ? \CanvasApi::using('accounts')->listAccounts()->getErrors()[0]->message : false;
+        $accessKeyControl = \CanvasApi::using('accounts')->listAccounts()->errorMessage();
         if ($accessKeyControl!= false and  $accessKeyControl == "Geçersiz token") {
             // Token hatalı hatası alırsak session'u siliyoruz ve yönlendirmeyi yapıyoruz.
             Session::remove("access_token");

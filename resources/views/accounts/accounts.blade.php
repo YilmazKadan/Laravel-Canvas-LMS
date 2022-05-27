@@ -1,6 +1,5 @@
 @section('plugins.Datatables', true)
 @section('plugins.toastr', true)
-@section('plugins.Sweetalert2', true)
 
 @extends('adminlte::page')
 
@@ -38,7 +37,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="course_code">Refersan Kodu:</label>
                                     <input type="text" class="form-control" name="course_code" id="course_code">
-                                    <input type="hidden" name="account_id" id="account_id" value="1">
+                                    <input type="hidden" name="account_id" id="account_id" value="{{$account->id}}">
                                 </div>
                             </div>
                         </div>
@@ -115,7 +114,6 @@
                         if(result.errors)
                         {
                             jQuery('.alert-danger').html('');
-                                console.log(result.errors);
                             jQuery.each(result.errors, function(key, value){
                                 jQuery('.alert-danger').show();
                                 jQuery('.alert-danger').append('<li>'+value+'</li>');
@@ -123,10 +121,8 @@
                         }
                         else if (result.apierrors){
                             console.log(result.apierrors);
-                            result.apierrors.forEach((item) =>{
                                 jQuery('.alert-danger').show();
-                                jQuery('.alert-danger').append('<li>'+item.message+'</li>');
-                            });
+                                jQuery('.alert-danger').append('<li>'+result.apierrors+'</li>');
                         }
                         else
                         {
@@ -136,6 +132,8 @@
                                     "progressBar" : true
                                 }
                             toastr.success("İşlem başarılı");
+                            {{--if(window.location.hostname == {{URL::current()}})--}}
+                            {{--    window.location.href += "?withoutcache=true";--}}
                             $('#myModal').modal('hide');
                             document.getElementById("form").reset();
                         }

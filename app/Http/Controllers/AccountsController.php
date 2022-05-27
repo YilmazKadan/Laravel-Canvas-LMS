@@ -17,7 +17,10 @@ class AccountsController extends Controller
         return view("accounts.index", compact('accounts'));
     }
 
-    public function specific($id){
+    public function specific(Request $request, $id){
+
+        $dersler = \CanvasApi::using('accounts')->listActiveCoursesInAccount($id)->getContent();
+
         $api = new  CanvasApi;
         $api->setClient(new \Uncgits\CanvasApi\Clients\Accounts);
 
@@ -26,7 +29,7 @@ class AccountsController extends Controller
         return view('accounts.accounts',[
             "id" => $id,
             "account" => $account,
-            "dersler" => \CanvasApi::using('accounts')->listActiveCoursesInAccount($id)->getContent()
+            "dersler" => $dersler
         ]);
     }
 

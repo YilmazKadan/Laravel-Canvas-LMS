@@ -21,7 +21,8 @@ class CoursesController extends Controller
 
         $validator = \Validator::make($request->all(), [
             'name' => 'required',
-            'course_code' => 'required'
+            'course_code' => 'required',
+            'account_id' => 'required'
         ]);
         if ($validator->fails())
         {
@@ -38,12 +39,10 @@ class CoursesController extends Controller
         $api = new CanvasApi;
         $api->setClient(new \Uncgits\CanvasApi\Clients\Courses);
 
-        $result = $api->addParameters($fields)->createCourse(1);
-
+        $result = $api->addParameters($fields)->createCourse($request->account_id);
         if($result->getStatus() == "error"){
-            return response()->json(["apierrors" => $result->getErrors()]);
+            return response()->json(["apierrors" => $result->errorMessage()]);
         }
-
         return response()->json(['success',"Başarılı bir şekilde kayıt eklendi"]);
     }
     public function specific($id){
