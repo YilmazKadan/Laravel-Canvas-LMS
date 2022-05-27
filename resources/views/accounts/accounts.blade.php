@@ -1,5 +1,6 @@
 @section('plugins.Datatables', true)
 @section('plugins.toastr', true)
+@section('plugins.Select2',true)
 
 @extends('adminlte::page')
 
@@ -28,16 +29,27 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-7">
                                     <label for="name">Ders Adı:</label>
                                     <input type="text" class="form-control" name="name" id="name">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-7">
                                     <label for="course_code">Refersan Kodu:</label>
                                     <input type="text" class="form-control" name="course_code" id="course_code">
-                                    <input type="hidden" name="account_id" id="account_id" value="{{$account->id}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-7">
+                                    <div>
+                                        <label for="course_code">Hesap</label>
+                                    </div>
+                                    <select class="form-control" name="account_id" id="account_id">
+                                        @foreach($accounts as $localaccount)
+                                        <option {{($localaccount->id == $account->id) ? "selected" : ''}} value="{{$localaccount->id}}">{{$localaccount->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +107,12 @@
 @section('js')
     <script>
         $(document).ready(function () {
+
             $('#tablo').DataTable();
+            $('#account_id').select2({
+                dropdownParent : $('#myModal'),
+                width: 100%
+            });
 
             jQuery('#ajaxSubmit').click(function(e){
                 e.preventDefault();

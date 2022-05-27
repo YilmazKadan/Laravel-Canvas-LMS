@@ -173,7 +173,6 @@ class CanvasApiResult
     }
 
     public function getErrors(){
-        dd("Caferrrr çözdünnn");
         return !empty($this->content->errors) ? $this->content->errors : false;
     }
     public function errorMessage(){
