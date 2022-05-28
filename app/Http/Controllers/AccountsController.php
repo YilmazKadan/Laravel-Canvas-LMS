@@ -25,7 +25,7 @@ class AccountsController extends Controller
         $api->setClient(new \Uncgits\CanvasApi\Clients\Accounts);
 
         $accounts = \CanvasApi::using("accounts")->listAccounts()->getContent();
-
+        ;
         $account = $api->getAccount($id)->getContent();
         return view('accounts.accounts',[
             "id" => $id,

@@ -37,9 +37,43 @@ class AccountsUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $validator = \Validator::make($request->all(),[
+            "name" => "required",
+            "sortable_name" => "required",
+            "short_name" => "required",
+            "unique_id" => "required",
+            "email" => "required",
+        ]);
+
+        if($validator->fails()){
+            return response()->json(["errors" => $validator->errors()->all()]);
+        }
+
+        $fields = [
+            "user" => [
+                "name" => $request->name,
+                "sortable_name" =>$request->sortable_name,
+                "short_name" =>$request->short_name,
+                "email" =>$request->email,
+            ],
+            "pseudonym" => [
+                "unique_id" => $request->unique_id
+            ]
+        ];
+
+        $api = new CanvasApi;
+        $api->setClient(new \Uncgits\CanvasApi\Clients\Users);
+
+        $result = $api->addParameters($fields)->createUser($request->id);
+
+        if($result->getStatus() == "error"){
+            return response()->json(["apierrors" => $result->errorMessage()]);
+        }
+        return response()->json(["success" => "Kullanıcı başarılı bir şekilde hesap altına eklendi"]);
+
+
     }
 
     /**

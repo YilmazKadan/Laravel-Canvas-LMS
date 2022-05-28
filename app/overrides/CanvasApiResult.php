@@ -176,14 +176,25 @@ class CanvasApiResult
         return !empty($this->content->errors) ? $this->content->errors : false;
     }
     public function errorMessage(){
-    if($this->getErrors()){
-//      Std objesi olduğu için array'a çevirip ilk elemanını alıyoruz.
-        $ilkError =  (current((array)$this->content->errors));
+        if($this->getErrors()){
+//      Std objesinin array dönüşümünü yapıyoruz.
+        $ilkError =  ((array)$this->content->errors);
 //       Gelen eleman dizi değil ise direkt message'yi döndürüyoruz , dizi ise ilk elemanın içine girip onun message'sini döndürüyoruz.
-        if(is_array($ilkError))
-            return $this->errorTranslate("{$ilkError[0]->attribute} ".$ilkError[0]->message);
-        else
+            // Burada error sayısı 1'den küçük ise ve ilk elemanın ilk elemanın message adında bir attributesi var ise, girilir.
+        if(count($ilkError) <= 1 and !empty(current(current($ilkError))->message)){
+            $ilkError = current(current($ilkError));
+            return $this->errorTranslate("---{$ilkError->attribute}--- ".$ilkError->message);
+        }
+        // Burada eleman sayısı birden fazla ise bir sonraki elemanın ilk elemanının ilk elemanını alınır.
+        else if(count($ilkError) > 1){
+            $ilkError = current(current((next($ilkError))));
+            return $this->errorTranslate("---{$ilkError->attribute}---".$ilkError->message);
+        }
+        // Burada direkt sadece mesaj verildiyse ve bir elemanı var ise hata mesajı ekrana basılır.
+        else{
+            $ilkError = current($ilkError);
             return $this->errorTranslate($ilkError->message);
+        }
     }
     else{
         return false;

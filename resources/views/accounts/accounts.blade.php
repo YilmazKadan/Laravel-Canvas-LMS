@@ -111,7 +111,7 @@
             $('#tablo').DataTable();
             $('#account_id').select2({
                 dropdownParent : $('#myModal'),
-                width: 100%
+                width: "100%"
             });
 
             jQuery('#ajaxSubmit').click(function(e){
@@ -125,6 +125,7 @@
                 jQuery.ajax({
                     url: url,
                     method: 'post',
+                    dataType : "json",
                     data: $("#form").serialize(),
                     success: function(result){
                         jQuery('.alert-danger').empty();
@@ -137,7 +138,6 @@
                             });
                         }
                         else if (result.apierrors){
-                            console.log(result.apierrors);
                                 jQuery('.alert-danger').show();
                                 jQuery('.alert-danger').append('<li>'+result.apierrors+'</li>');
                         }
@@ -148,9 +148,11 @@
                                     "closeButton" : true,
                                     "progressBar" : true
                                 }
-                            toastr.success("İşlem başarılı");
+                            toastr.success(result.success);
                             {{--if(window.location.hostname == {{URL::current()}})--}}
                             {{--    window.location.href += "?withoutcache=true";--}}
+                            jQuery('.alert-danger').empty();
+                            jQuery('.alert-danger').hide();
                             $('#myModal').modal('hide');
                             document.getElementById("form").reset();
                         }

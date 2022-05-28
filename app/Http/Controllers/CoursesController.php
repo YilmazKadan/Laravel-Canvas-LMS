@@ -18,7 +18,6 @@ class CoursesController extends Controller
         return view("courses", compact('result'));
     }
     public function store(Request $request){
-
         $validator = \Validator::make($request->all(), [
             'name' => 'required',
             'course_code' => 'required',
@@ -43,7 +42,7 @@ class CoursesController extends Controller
         if($result->getStatus() == "error"){
             return response()->json(["apierrors" => $result->errorMessage()]);
         }
-        return response()->json(['success',"Başarılı bir şekilde kayıt eklendi"]);
+        return response()->json(['success' => "Başarılı bir şekilde kayıt eklendi"]);
     }
     public function specific($id){
         $api = new CanvasApi;
