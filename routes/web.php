@@ -55,5 +55,9 @@ Route::group(['middleware' => 'apimiddle'],function(){
 
         Route::get("/","CoursesController@index")->name("index");
         Route::get("{id}","CoursesController@spesific")->name("spesific");
+        Route::get("{id}/publish","CoursesController@publish")->name("publish");
+        Route::get("{id}/unpublish","CoursesController@unpublish")->name("unpublish");
+
+        Route::resource("{id}/enrollments","CourseEnrollmentsController");
     });
 });

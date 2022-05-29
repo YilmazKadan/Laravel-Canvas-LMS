@@ -6,6 +6,11 @@
                     ])}}">Anasayfa</a>
         </li>
         <li class="navbar-item">
+            <a class="nav-link {{(request()->routeIs("courses.enrollments.index")) ? 'active' : ''}}" href="{{route('courses.enrollments.index',[
+                        "id" => request()->route()->id
+                    ])}}">Katılımcılar</a>
+        </li>
+        <li class="navbar-item">
             <a href="#" class="nav-link">İstatistikler</a>
         </li>
     </ul>

@@ -12,15 +12,15 @@
 
 @section('content')
     <div class="row">
+        @include("menuLayouts.messages")
+    </div>
+    <div class="row">
         <div class="col col-md-2">
             @include('menuLayouts.courses')
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-10">
             @yield("layout_content")
-        </div>
-        <div class="col-md-3">
-            @include('menuLayouts.coursesRightMenu')
         </div>
     </div>
 @stop

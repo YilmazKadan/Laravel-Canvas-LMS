@@ -175,8 +175,19 @@ class CanvasApiResult
     }
 //    Bu metot 400 üzeri alanın statü kodlarında istenildiğinde abort fırlatmak için kullanılır.
     public function throwAbort(){
-        if(count($this->abortCodes) >= 1)
-            abort (current($this->abortCodes));
+        if(count($this->abortCodes) >= 1 and current($this->abortCodes) == 404)
+            abort(current($this->abortCodes));
+        else
+            return $this;
+    }
+    public function errorRedirect($response = false){
+        if($this->errorMessage()){
+            if(!$response)
+                return redirect()->back()->with(["apierrors" => $this->errorMessage()]);
+            else
+                return response()->json(["apierrors" => $this->errorMessage()]);
+
+        }
         else
             return $this;
     }

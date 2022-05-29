@@ -45,28 +45,51 @@ class CoursesController extends Controller
         }
         return response()->json(['success' => "Başarılı bir şekilde kayıt eklendi"]);
     }
+
     public function spesific($id){
         $api = new CanvasApi;
         $api->setClient(new \Uncgits\CanvasApi\Clients\Courses);
 
-        $course = $api->getCourse($id)->throwAbort()->getContent();
-
+        $course = $api->addParameters([
+            "include" => [
+                "syllabus_body"
+            ]
+        ])->getCourse($id)->throwAbort()->getContent();
+        $activityStream = $api->getCourseActivityStreamSummary($id)->errorRedirect()->getContent();
         return view("courses.coursesindex",[
             "course" => $course
         ]);
     }
-    public function show($id){
 
-    }
-    public function create(){
+//    Bir kursu öğrencilerden gizler
+    public function publish($id){
 
-    }
-
-    public function enrollments($courseId){
         $api = new CanvasApi;
-        $api->setClient(new \Uncgits\CanvasApi\Clients\Enrollments);
-        $users = $api->listCourseEnrollments($courseId)->getContent();
+        $api->setClient(new \Uncgits\CanvasApi\Clients\Courses);
+        $course = $api->addParameters(
+            [
+                "course" => [
+                    "event" => "offer"
+                ]
+            ]
+        )->updateCourse($id)->errorRedirect();
 
-        return view('courseUsers',compact('users'));
+        return redirect()->back();
     }
+//    Bir kursu öğrencilere görünür yapar
+    public function unpublish($id){
+
+        $api = new CanvasApi;
+        $api->setClient(new \Uncgits\CanvasApi\Clients\Courses);
+        $course = $api->addParameters(
+            [
+                "course" => [
+                    "event" => "claim"
+                ]
+            ]
+        )->updateCourse($id)->errorRedirect();
+
+        return redirect()->back();
+    }
+
 }
