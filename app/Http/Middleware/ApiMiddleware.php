@@ -17,16 +17,19 @@ class ApiMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (empty(Session::get('access_token'))) {
+        if (!Session::has('access_token') or is_null(Session::get('access_token'))) {
             return redirect("/giris");
         }
         /*
             Burada invalid token hatası alınırsa login sayfasına yönlendiriyoruz.
         */
-        $accessKeyControl = \CanvasApi::using('accounts')->listAccounts()->errorMessage();
-        if ($accessKeyControl!= false and  $accessKeyControl == "Geçersiz token") {
+//        Cache takılmamak amaçlı cach'siz bir şekilde rastgele bir istek yapıyoruz. Ve olası hata mesajını kontrol ediyoruz.
+        $accessKeyControl = \CanvasApi::using('accounts')->withoutCache()->listAccounts()->errorMessage();
+
+        if ($accessKeyControl != false and  $accessKeyControl == "Geçersiz token") {
             // Token hatalı hatası alırsak session'u siliyoruz ve yönlendirmeyi yapıyoruz.
             Session::remove("access_token");
+
             return redirect("/giris");
         };
         return $next($request);

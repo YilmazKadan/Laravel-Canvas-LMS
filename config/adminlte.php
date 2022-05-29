@@ -257,11 +257,15 @@ return [
             'text' => 'Hesaplar',
             'url'  => 'accounts',
             'icon' => 'fas fa-fw fa-tasks',
+        ],[
+            'text' => 'Dersler',
+            'route'  => 'courses.index',
+            'icon' => 'fas fa-fw fa-book',
         ],
         [
             'text' => 'Çıkış',
             'route'  => 'logout',
-            'icon' => 'fas fa-fw fa-logout',
+            'icon' => 'fas fa-fw fa-sign-out-alt',
         ],
 //        [
 //            'text'    => 'multilevel',
@@ -421,6 +425,25 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => 'vendor/toastr/toastr.css',
+                ],
+            ],
+        ],
+        'tempusdominus' =>[
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment-with-locales.js',
+                ],[
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.css',
                 ],
             ],
         ],

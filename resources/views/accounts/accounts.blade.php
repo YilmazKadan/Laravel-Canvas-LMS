@@ -12,7 +12,6 @@
 
 @section('content')
     <div class="row">
-        <!-- Trigger the modal with a button -->
         <form method="post" action="{{route('courses.store')}}" id="form">
         @csrf
         <!-- Modal -->
@@ -48,6 +47,18 @@
                                     <select class="form-control" name="account_id" id="account_id">
                                         @foreach($accounts as $localaccount)
                                         <option {{($localaccount->id == $account->id) ? "selected" : ''}} value="{{$localaccount->id}}">{{$localaccount->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-7">
+                                    <div>
+                                        <label for="course_code">Hesap</label>
+                                    </div>
+                                    <select class="form-control" name="term_id" id="account_term">
+                                        @foreach($terms as $term)
+                                        <option  value="{{$term->id}}">{{$term->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -149,8 +160,6 @@
                                     "progressBar" : true
                                 }
                             toastr.success(result.success);
-                            {{--if(window.location.hostname == {{URL::current()}})--}}
-                            {{--    window.location.href += "?withoutcache=true";--}}
                             jQuery('.alert-danger').empty();
                             jQuery('.alert-danger').hide();
                             $('#myModal').modal('hide');

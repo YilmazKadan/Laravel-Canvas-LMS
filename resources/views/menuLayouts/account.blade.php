@@ -15,6 +15,29 @@
                         "id" => request()->route()->id
                     ])}}">Dönemler</a>
     </li>
+        <li class="navbar-item">
+            <a href="#" class="nav-link">İstatistikler</a>
+        </li>
+        <li class="navbar-item">
+            <a href="#" class="nav-link">Alt Hesaplar</a>
+        </li>
+        <li class="navbar-item">
+            <a href="#" class="nav-link">Soru Bankaları</a>
+        </li>
+        <li class="navbar-item">
+            <a href="#" class="nav-link">Ayarlar</a>
+        </li>
+        <li class="navbar-item">
+            <a href="#" class="nav-link">Öğretim Üyesi Günlüğü</a>
+        </li>
     </ul>
 
 </nav>
+
+@push('css')
+    <style>
+       .navbar-item .nav-link{
+            font-size:18px;
+       }
+    </style>
+@endpush

@@ -48,6 +48,8 @@ class CanvasApiResult
      */
     protected $config;
 
+    protected $abortCodes = [];
+
     /*
     |--------------------------------------------------------------------------
     | Getters
@@ -171,7 +173,13 @@ class CanvasApiResult
         $this->message = $message;
         return $this;
     }
-
+//    Bu metot 400 üzeri alanın statü kodlarında istenildiğinde abort fırlatmak için kullanılır.
+    public function throwAbort(){
+        if(count($this->abortCodes) >= 1)
+            abort (current($this->abortCodes));
+        else
+            return $this;
+    }
     public function getErrors(){
         return !empty($this->content->errors) ? $this->content->errors : false;
     }
@@ -222,6 +230,7 @@ class CanvasApiResult
         foreach ($this->calls as $call) {
             if ($call['response']['code'] >= 400) {
                 $failedCalls[] = $call;
+                $this->abortCodes[] = $call['response']['code'];
             }
 
             if (isset($call['response']['body']) && !empty($call['response']['body'])) {

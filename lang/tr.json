@@ -1,5 +1,7 @@
 {
     "The specified resource does not exist.": "Belirtilen kaynak mevcut değil",
     "Invalid access token." : "Geçersiz token",
-    "---unique_id---ID already in use for this account and authentication provider" : "Giriş ID benzersiz olmak zorundadır."
+    "---unique_id---ID already in use for this account and authentication provider" : "Giriş ID benzersiz olmak zorundadır.",
+    "teacher" : "Öğretmen",
+    "student" : "Öğrenci"
 }
